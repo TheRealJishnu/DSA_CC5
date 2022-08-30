@@ -19,7 +19,7 @@ void pop(){
         return;
     }
     else {
-        printf("Data at Position %d :\t%d\n", (tos+1), stack1[tos].data);    //--
+        printf("Data at Position %d :\t%d\n", (tos+1), stack1[tos--].data);    //--
     }
 }
 
@@ -36,7 +36,7 @@ void push(){
     }
 }
 
-void peep(){
+void peek(){
     if(tos == -1) {
         printf("Stack is Empty  :(\n");
         return;
@@ -68,7 +68,7 @@ int main() {
     switch(choice) {
         case 1 : push(); break;
         case 2 : pop(); break;
-        case 3 : peep(); break;
+        case 3 : peek(); break;
         case 4 : display(); break;
         default : printf("Invalid Choice\t:(\n"); break;
     }
