@@ -68,12 +68,17 @@ int main() {
     int i = 0, j = 0;
     while (expr[i] != NULL) {
         if (expr[i] == '+' || expr[i] == '-' || expr[i] == '*' || expr[i] == '/' || expr[i] == '^') {
-            if (priority(expr[i] > priority(pop()))) {
+            if (tos == -1) {
                 push(expr[i]);
             }
-            else {
-                while (tos != -1) {
-                    output[j] = pop();
+            else{
+                if (priority(expr[i] > priority(pop()))) {                   //STACK EMPTY ERROR
+                    push(expr[i]);
+                }
+                else {
+                    while (tos != -1) {
+                        output[j] = pop();
+                    }
                 }
             }
         }
