@@ -11,7 +11,6 @@ char pop(){
         return;
     }
     else {
-        //printf("Data at Position %d :\t%d\n", (tos+1), stack[tos]);    //--
         return stack[tos--];
     }
 }
@@ -22,9 +21,7 @@ void push(char ch){
         return;
     }
     else {
-        //printf("Enter Data to Be Added in Stack\t:\t");
-        //int data;
-        //scanf("%d", &data);
+        
         stack[++tos] = ch;
     }
 }
@@ -59,7 +56,6 @@ int priority (char a) {
 }
 
 int main() {
-    //Declaration and Input Part
     printf("Enter Maximum Size of Expression");
     scanf("%d", &size);
     expr = (char*)malloc((size+5) * sizeof(char));
@@ -68,14 +64,6 @@ int main() {
     printf("Enter Expression Without Space: ");
     scanf("%s", expr);
     
-    //Priority Initiation
-    /*int pr_plus = 1;
-    int pr_minus = 1;
-    int pr_mult = 2;
-    int pr_div = 2;
-    int pr_power = 3;
-    */
-
     //Real Work
     int i = 0, j = 0;
     while (expr[i] != NULL) {
