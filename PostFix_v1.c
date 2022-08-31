@@ -72,11 +72,11 @@ int main() {
                 push(expr[i++]);
             }
             else{
-                if (priority(expr[i] > priority(pop()))) {
+                if (priority(expr[i] > priority(peek()))) {
                     push(expr[i++]);
                 }
                 else {
-                    while (tos != -1) {
+                    while (priority(expr[i] <= priority(peek()))) {
                         output[j++] = pop();
                     }
                 }
