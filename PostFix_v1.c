@@ -21,7 +21,7 @@ void push(char ch){
         return;
     }
     else {
-        
+
         stack[++tos] = ch;
     }
 }
@@ -63,41 +63,50 @@ int main() {
     stack = (char*)malloc((size+5) * sizeof(char));
     printf("Enter Expression Without Space: ");
     scanf("%s", expr);
-    
+
+
     //Real Work
     int i = 0, j = 0;
-    while (expr[i] != NULL) {
+    while (expr[i] != '\0') {
         if (expr[i] == '+' || expr[i] == '-' || expr[i] == '*' || expr[i] == '/' || expr[i] == '^') {
             if (tos == -1) {
-                push(expr[i++]);
+                push(expr[i]);
+                i++;
             }
             else{
                 if (priority(expr[i] > priority(peek()))) {
-                    push(expr[i++]);
+                    push(expr[i]);
+                    i++;
                 }
                 else {
                     while (priority(expr[i] <= priority(peek()))) {
-                        output[j++] = pop();
+                        output[j] = pop();
+                        j++;
                     }
                 }
             }
         }
         else {
-            expr[i++] = output[j++];
+            output[j]=expr[i];
+            j++;
+            i++;
+            //output[j++]=expr[i++] ;
         }
         //i++;
         //j++;
     }
 
     while (tos != -1) {
-        output[i] = pop();
+        output[j] = pop();
+        j++;
     }
 
     printf("Postfix is ");
     int k = 0;
-    while (output[k] != NULL) {
-        printf("%c ", output[k++]);
+    while (output[k] != '\0') {
+        printf("%c ", output[k]);
+        k++;
     }
 
-    
+
 }
