@@ -69,24 +69,24 @@ int main() {
     while (expr[i] != NULL) {
         if (expr[i] == '+' || expr[i] == '-' || expr[i] == '*' || expr[i] == '/' || expr[i] == '^') {
             if (tos == -1) {
-                push(expr[i]);
+                push(expr[i++]);
             }
             else{
-                if (priority(expr[i] > priority(pop()))) {                   //STACK EMPTY ERROR
-                    push(expr[i]);
+                if (priority(expr[i] > priority(pop()))) {
+                    push(expr[i++]);
                 }
                 else {
                     while (tos != -1) {
-                        output[j] = pop();
+                        output[j++] = pop();
                     }
                 }
             }
         }
         else {
-            expr[i] = output[j];
+            expr[i++] = output[j++];
         }
-        i++;
-        j++;
+        //i++;
+        //j++;
     }
 
     while (tos != -1) {
@@ -96,7 +96,7 @@ int main() {
     printf("Postfix is ");
     int k = 0;
     while (output[k] != NULL) {
-        printf("%c ", output[k]);
+        printf("%c ", output[k++]);
     }
 
     
