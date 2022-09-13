@@ -7,25 +7,25 @@ int search;
 int flag = 0;
 
 int BinarySearchArr(int low, int high) {
-    int mid = (high + low)/2;
+    while(low <= high){
+            int mid = (high + low)/2;
+        
+        if(search == arr[mid]){
+            flag = 1;
+            return mid;
+        }
+        else if (search < arr[mid]){
+            high = mid - 1;
+            BinarySearchArr(low, high);
+        }
+        else if (search > arr[mid]){
+            low = mid + 1;
+            BinarySearchArr(low, high);
+        }
+    }
+    return -1;
 
-    if(low == high) {
-        return - 1;
-    }
-    if(search == arr[mid]){
-        flag = 1;
-        return mid;
-    }
-    else if (search < arr[mid]){
-        high = mid;
-        BinarySearchArr(low, high);
-    }
-    else if (search > arr[mid]){
-        low = mid;
-        BinarySearchArr(low, high);
-    }
-    
-    
+
 
 }
 
@@ -43,6 +43,5 @@ int main() {
     printf("\nSearched Element is in Position: %d", BinarySearchArr(0, length - 1));
 
 
-    
-}
 
+}
