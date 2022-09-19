@@ -182,7 +182,8 @@ void BubbleSort() {
         dnode *temp2 = head->next;
 
         for (int j = 0; j < getLength()-1-i; j++){
-            Swap(temp1, temp2);
+            if(temp1->data > temp2->data)
+                Swap(temp1, temp2);
             temp1 = temp1->next;
             temp2 = temp1->next;
         }
