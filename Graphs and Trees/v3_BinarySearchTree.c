@@ -100,6 +100,16 @@ int Delete_A_Node(node* current, int data)
 }
 
 //GFG
+node* minValueNode(struct node* node)
+{
+    struct node* current = node;
+  
+    /* loop down to find the leftmost leaf */
+    while (current && current->left != NULL)
+        current = current->left;
+  
+    return current;
+}
 struct node* deleteNode(struct node* root, int key)
 {
     // base case
