@@ -69,94 +69,121 @@ void PreOrder(node* current)
     }
 }
 
-int Delete_A_Node(node* current, int data)
+void InOrder(node* current)
 {
-    if(current->data == data)
+    if(current == NULL)
     {
-        if(current->right == NULL && current->left == NULL)
-        {
-            int ret = current->data;
-            free(current);
-            current = NULL;
-            return ret;
-        }
-
+        return;
     }
-    else if (current == NULL)
+    else
     {
-        
+        PreOrder(current->left);
+        printf("%d\t", current->data);
+        PreOrder(current->right);
     }
-    
-    else if(data > current->data)
-    {
-        return Delete_A_Node(current->right, data);
-    }
-    else if(data < current->data)
-    {
-        return Delete_A_Node(current->right, data);
-    }
-
-    
 }
 
-//GFG
-node* minValueNode(struct node* node)
+void PostOrder(node* current)
 {
-    struct node* current = node;
+    if(current == NULL)
+    {
+        return;
+    }
+    else
+    {
+        PreOrder(current->left);
+        PreOrder(current->right);
+        printf("%d\t", current->data);
+    }
+}
+
+// int Delete_A_Node(node* current, int data)
+// {
+//     if(current->data == data)
+//     {
+//         if(current->right == NULL && current->left == NULL)
+//         {
+//             int ret = current->data;
+//             free(current);
+//             current = NULL;
+//             return ret;
+//         }
+
+//     }
+//     else if (current == NULL)
+//     {
+        
+//     }
+    
+//     else if(data > current->data)
+//     {
+//         return Delete_A_Node(current->right, data);
+//     }
+//     else if(data < current->data)
+//     {
+//         return Delete_A_Node(current->right, data);
+//     }
+
+    
+// }
+
+//GFG
+node* minValueNode(node* nodee)
+{
+    node* current = nodee;
   
-    /* loop down to find the leftmost leaf */
     while (current && current->left != NULL)
         current = current->left;
   
     return current;
 }
-struct node* deleteNode(struct node* root, int key)
+node* deleteNode(node* current, int key)
 {
     // base case
-    if (root == NULL)
+    if (current == NULL)
         return root;
   
     // If the key to be deleted 
     // is smaller than the root's
     // key, then it lies in left subtree
-    if (key < root->key)
+    if (key < current->data)
         root->left = deleteNode(root->left, key);
   
     // If the key to be deleted 
     // is greater than the root's
     // key, then it lies in right subtree
-    else if (key > root->key)
-        root->right = deleteNode(root->right, key);
+    else if (key > root->data)
+        root->right = deleteNode(current->right, key);
   
     // if key is same as root's key, 
     // then This is the node
     // to be deleted
     else {
         // node with only one child or no child
-        if (root->left == NULL) {
-            struct node* temp = root->right;
-            free(root);
+        if (current->left == NULL) {
+            node* temp = current->right;
+            free(current);
             return temp;
         }
         else if (root->right == NULL) {
-            struct node* temp = root->left;
-            free(root);
+            node* temp = current->left;
+            free(current);
             return temp;
         }
   
         // node with two children: 
         // Get the inorder successor
         // (smallest in the right subtree)
-        struct node* temp = minValueNode(root->right);
+        node* temp = minValueNode(root->right);
   
         // Copy the inorder 
         // successor's content to this node
-        root->key = temp->key;
+        current->data = temp->data;
   
         // Delete the inorder successor
-        root->right = deleteNode(root->right, temp->key);
+        root->right = deleteNode(current->right, temp->data);
     }
-    return root;
+    return current;
 }
 
 int main()
@@ -168,6 +195,9 @@ int main()
         printf("\nWELCOME TO BINARY SEARCH TREE\n");
         printf("TYPE 1 TO INSERT DATA\nTYPE 2 TO SEARCH DATA\n");
         printf("TYPE 3 TO SHOW PRE-ORDER\n");
+        printf("TYPE 4 TO SHOW IN-ORDER\n");
+        printf("TYPE 5 TO SHOW POST-ORDER\n");
+        printf("TYPE 6 TO DELETE A NODE\n");
         int choice;
         scanf("%d", &choice);
         switch(choice)
@@ -198,10 +228,18 @@ int main()
             }
             case 4 :
             {
+                InOrder(root); break;
+            }
+            case 5 :
+            {
+                PostOrder(root); break;
+            }
+            case 6 :
+            {
                 printf("Enter Data to DELETE: ");
                 int data;
                 scanf("%d", &data);
-                root = Delete_A_Node(root, data);
+                root = deleteNode(root, data);
                 printf("%d DELETED SUCCESSFULLY\n", data);
                 break;
             }
