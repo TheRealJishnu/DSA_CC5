@@ -33,7 +33,7 @@ int main()
         arr[j+1] = key;
     }
 
-    printf("Selection Sorted Array : \n");
+    printf("Insertion Sorted Array : \n");
     for(int i=0; i<size; i++)
     {
         printf("%d\t", arr[i]);
