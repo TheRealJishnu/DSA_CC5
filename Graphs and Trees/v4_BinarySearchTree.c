@@ -97,37 +97,7 @@ void PostOrder(node* current)
     }
 }
 
-// int Delete_A_Node(node* current, int data)
-// {
-//     if(current->data == data)
-//     {
-//         if(current->right == NULL && current->left == NULL)
-//         {
-//             int ret = current->data;
-//             free(current);
-//             current = NULL;
-//             return ret;
-//         }
 
-//     }
-//     else if (current == NULL)
-//     {
-        
-//     }
-    
-//     else if(data > current->data)
-//     {
-//         return Delete_A_Node(current->right, data);
-//     }
-//     else if(data < current->data)
-//     {
-//         return Delete_A_Node(current->right, data);
-//     }
-
-    
-// }
-
-//GFG
 node* minValueNode(node* nodee)
 {
     node* current = nodee;
