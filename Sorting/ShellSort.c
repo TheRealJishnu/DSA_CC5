@@ -36,7 +36,7 @@ int main()
         }
     }
 
-    printf("Selection Sorted Array : \n");
+    printf("Shell Sorted Array : \n");
     for(int i=0; i<size; i++)
     {
         printf("%d\t", arr[i]);
